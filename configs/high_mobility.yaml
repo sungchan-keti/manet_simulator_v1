@@ -1,0 +1,23 @@
+# 고속 이동 시나리오 설정
+
+name: "high_mobility"
+duration: 120.0
+time_step: 0.1
+
+area_width: 2000.0
+area_height: 2000.0
+area_depth: 300.0
+
+num_ugv: 8
+num_uav: 12
+transmission_range: 300.0
+
+mobility_model: "gauss_markov"
+min_speed: 10.0
+max_speed: 50.0
+
+traffic_type: "cbr"
+packet_rate: 20.0
+packet_size: 1024
+
+protocol: "gpsr"

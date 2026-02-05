@@ -1,0 +1,33 @@
+# MANET 시뮬레이션 기본 설정
+
+name: "default_scenario"
+duration: 100.0  # 시뮬레이션 시간 (초)
+time_step: 0.1   # 시간 간격 (초)
+
+# 시뮬레이션 영역
+area_width: 500.0   # 미터
+area_height: 500.0  # 미터
+area_depth: 100.0   # 미터 (UAV 최대 고도)
+
+# 노드 설정
+num_gcs: 1           # GCS (지상통제소)
+num_ugv: 5           # 무인지상차량
+num_uav: 5           # 무인항공기
+transmission_range: 300.0  # 미터
+
+# GCS 위치 (null이면 영역 중앙)
+gcs_position: null
+
+# 이동성 설정
+mobility_model: "random_waypoint"  # random_waypoint, gauss_markov
+min_speed: 1.0   # m/s
+max_speed: 10.0  # m/s
+
+# 트래픽 설정
+traffic_type: "cbr"    # cbr, poisson
+traffic_mode: "gcs"    # gcs: 모든 노드↔GCS, random: 임의 쌍
+packet_rate: 5.0       # packets/second (각 트래픽 쌍당)
+packet_size: 512       # bytes
+
+# 프로토콜 설정
+protocol: "olsr"  # olsr, aodv, gpsr
