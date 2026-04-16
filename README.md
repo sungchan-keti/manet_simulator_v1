@@ -1,68 +1,67 @@
 # MANET Protocol Simulator
 
-UGV(무인지상차량) 및 UAV(무인항공기) 멀티홉 네트워크(MANET) 시뮬레이터입니다.
-OLSR, AODV, GPSR 세 가지 라우팅 프로토콜의 성능을 비교 분석합니다.
+A multi-hop network (MANET) simulator for UGV (Unmanned Ground Vehicle) and UAV (Unmanned Aerial Vehicle) environments. Compares the performance of three routing protocols: OLSR, AODV, and GPSR.
 
 ## Features
 
-- **3가지 라우팅 프로토콜 구현**
-  - OLSR (Proactive): HELLO/TC 메시지, MPR 선택
-  - AODV (Reactive): RREQ/RREP 온디맨드 경로 탐색
-  - GPSR (Geographic): Greedy/Perimeter 포워딩
+- **Three Routing Protocol Implementations**
+  - OLSR (Proactive): HELLO/TC messages, MPR selection
+  - AODV (Reactive): RREQ/RREP on-demand route discovery
+  - GPSR (Geographic): Greedy/Perimeter forwarding
 
-- **현실적인 시뮬레이션 환경**
-  - 3D 공간 (UGV: 지상, UAV: 공중)
-  - 다양한 이동성 모델 (Random Waypoint, Gauss-Markov)
-  - IEEE 802.11 기반 에너지 모델
+- **Realistic Simulation Environment**
+  - 3D space (UGV: ground level, UAV: airborne)
+  - Multiple mobility models (Random Waypoint, Gauss-Markov)
+  - IEEE 802.11-based energy model
 
-- **성능 측정 지표**
+- **Performance Metrics**
   - PDR (Packet Delivery Ratio)
-  - End-to-End Delay (경로 탐색 + 전송)
+  - End-to-End Delay (route discovery + transmission)
   - Routing Overhead
   - Energy Consumption
 
-- **3D 토폴로지 시각화**
+- **3D Topology Visualization**
 
 ## Installation
 
 ```bash
-# 의존성 설치
+# Install dependencies
 pip install -r requirements.txt
 
-# 테스트 실행
+# Run tests
 python -m pytest tests/ -v
 ```
 
 ## Quick Start
 
 ```bash
-# 단일 프로토콜 시뮬레이션
+# Single protocol simulation
 python -m src.main -p olsr -d 60
 
-# 3개 프로토콜 비교
+# Compare all three protocols
 python -m src.main --compare
 
-# 3D 토폴로지 시각화
+# 3D topology visualization
 python -m src.run_visualization --protocol all
 ```
 
 ## Usage
 
-### 명령줄 옵션
+### Command-Line Options
 
 ```bash
 python -m src.main [options]
 
 Options:
-  -p, --protocol    프로토콜 선택 (olsr, aodv, gpsr)
-  -d, --duration    시뮬레이션 시간 (초)
-  --ugv             UGV 노드 수
-  --uav             UAV 노드 수
-  --compare         3개 프로토콜 비교 실행
-  -c, --config      YAML 설정 파일 경로
+  -p, --protocol    Select protocol (olsr, aodv, gpsr)
+  -d, --duration    Simulation duration in seconds
+  --ugv             Number of UGV nodes
+  --uav             Number of UAV nodes
+  --compare         Run comparison across all three protocols
+  -c, --config      Path to YAML configuration file
 ```
 
-### 설정 파일 사용
+### Using a Configuration File
 
 ```bash
 python -m src.main -c configs/default.yaml
@@ -73,30 +72,30 @@ python -m src.main -c configs/default.yaml
 ```
 manet/
 ├── src/
-│   ├── core/              # 핵심 컴포넌트
-│   │   ├── node.py        # 노드 (UGV, UAV, GCS)
-│   │   ├── packet.py      # 패킷 정의
-│   │   ├── network.py     # 네트워크 토폴로지
-│   │   ├── energy.py      # 에너지 모델
-│   │   ├── spatial_index.py   # 공간 인덱싱 (최적화)
-│   │   └── location_service.py # 위치 서비스
-│   ├── protocols/         # 라우팅 프로토콜
-│   │   ├── olsr.py        # OLSR 구현
-│   │   ├── aodv.py        # AODV 구현
-│   │   └── gpsr.py        # GPSR 구현
-│   ├── mobility/          # 이동성 모델
+│   ├── core/                  # Core components
+│   │   ├── node.py            # Node types (UGV, UAV, GCS)
+│   │   ├── packet.py          # Packet definitions
+│   │   ├── network.py         # Network topology
+│   │   ├── energy.py          # Energy model
+│   │   ├── spatial_index.py   # Spatial indexing (optimization)
+│   │   └── location_service.py # Location service
+│   ├── protocols/             # Routing protocols
+│   │   ├── olsr.py            # OLSR implementation
+│   │   ├── aodv.py            # AODV implementation
+│   │   └── gpsr.py            # GPSR implementation
+│   ├── mobility/              # Mobility models
 │   │   ├── random_waypoint.py
 │   │   └── gauss_markov.py
-│   ├── simulation/        # 시뮬레이션 엔진
+│   ├── simulation/            # Simulation engine
 │   │   ├── engine.py
 │   │   └── scenario.py
-│   ├── metrics/           # 성능 측정
+│   ├── metrics/               # Performance measurement
 │   │   └── collector.py
-│   └── visualization/     # 시각화
-│       └── topology.py    # 2D/3D 토폴로지
-├── tests/                 # 단위 테스트
-├── configs/               # YAML 설정 파일
-└── results/               # 시뮬레이션 결과
+│   └── visualization/         # Visualization
+│       └── topology.py        # 2D/3D topology
+├── tests/                     # Unit tests
+├── configs/                   # YAML configuration files
+└── results/                   # Simulation results
 ```
 
 ## Protocol Comparison Results
